@@ -22,10 +22,12 @@
 <body>
     <div id="app">
         @include('layouts._header')
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <div class="container">
+                <br>
+                @include('layouts._breadcrumb')
+                <!-- Content here -->
+                @yield('content')
+            </div>
         @include('layouts._footer')
     </div>
 </body>

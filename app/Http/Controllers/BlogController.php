@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
+
 
 class BlogController extends Controller
 {
@@ -13,7 +15,22 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blogs.index');
+        $breadcrumbs = [
+            'links' => [
+                [
+                    'text' => 'Home',
+                    'href' => '/',
+                    'active' => false
+                ],
+                [
+                    'text' => 'Blogs',
+                    'href' => route('blogs.index'),
+                    'active' => true
+                ]
+            ]
+            ];
+        $blogs = Blog::all();
+        return view('blogs.index', compact('blogs','breadcrumbs'));
     }
 
     /**
@@ -23,7 +40,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $blog = new Blog();
+        return view('blogs.create', compact('blog'));
     }
 
     /**
@@ -34,7 +52,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
